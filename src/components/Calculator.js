@@ -1,9 +1,8 @@
-import { Component } from 'react';
-import styled from 'styled-components';
+import { Component } from "react";
 
-import Number from './Number';
-import Operator from './Operator';
-import Screen from './Screen';
+import Number from "./Number";
+import Operator from "./Operator";
+import Screen from "./Screen";
 
 class Calculator extends Component {
   state = {
@@ -14,25 +13,27 @@ class Calculator extends Component {
 
   handleNumberClick = (number) => {
     if (!this.state.operator) {
-      this.setState({ first: `${this.state.first || ''}${number}` });
+      this.setState({ first: `${this.state.first || ""}${number}` });
     } else {
-      this.setState({ second: `${this.state.second || ''}${number}` });
+      this.setState({ second: `${this.state.second || ""}${number}` });
     }
   };
 
   handleOperatorClick = (operator) => {
-    if (operator === '=') {
+    if (operator === "=") {
       const first = parseInt(this.state.first);
       const second = parseInt(this.state.second);
 
-      if (this.state.operator === '+') {
+      if (this.state.operator === "+") {
         this.setState({ operator: null, first: first + second, second: null });
-      } else if (this.state.operator === '/') {
+      } else if (this.state.operator === "/") {
         this.setState({ operator: null, first: first / second, second: null });
-      } else if (this.state.operator === '-') {
+      } else if (this.state.operator === "-") {
         this.setState({ operator: null, first: first - second, second: null });
+      } else if (this.state.operator === "x") {
+        this.setState({ operator: null, first: first * second, second: null });
       }
-    } else if (operator === 'clear') {
+    } else if (operator === "clear") {
       this.setState({ first: null, second: null, operator: null });
     } else {
       this.setState({ operator });
@@ -42,11 +43,10 @@ class Calculator extends Component {
   getScreenValue = () => this.state.second || this.state.first;
 
   render() {
-    console.log(this.state.first);
     return (
       <>
         <Screen value={this.getScreenValue()} />
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: "flex" }}>
           <div>
             <Number value={0} onClick={this.handleNumberClick} />
             <Number value={1} onClick={this.handleNumberClick} />
@@ -62,6 +62,7 @@ class Calculator extends Component {
           <div style={{ paddingLeft: 10 }}>
             <Operator value="+" onClick={this.handleOperatorClick} />
             <Operator value="/" onClick={this.handleOperatorClick} />
+            <Operator value="x" onClick={this.handleOperatorClick} />
             <Operator value="-" onClick={this.handleOperatorClick} />
             <Operator value="=" onClick={this.handleOperatorClick} />
             <Operator value="clear" onClick={this.handleOperatorClick} />
