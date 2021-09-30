@@ -12,7 +12,20 @@ As you can tell the current layout needs a lot of styling work. Modify the layou
 
 1. Style the calculator however you want. Feel free to use any colors, layout, and animations that you would like. Be as creative as you want.
 2. Can you find any edge cases with the calculator logic? Make a note about what you find.
-3. Deploy your application using any method you want (repo is setup for Github pages). Add the url: URL_TO_PROJECT
+3. Deploy your application using any method you want (repo is setup for Github actions). Add the url: URL_TO_PROJECT
+
+### Deployment Instructions (Github actions)
+
+- Go to `Settings`
+- Go to `Pages`
+- in `Source`, select `gh-pages` branch
+- Click Save
+- In `package.json`, add a new key/value as: `"homepage": "https://prof-tejera.github.io/<repo>"`
+
+Once the `build-deploy` action finishes running, the app should be live
+at `https://prof-tejera.github.io/<repo>`
+
+For other ways to deploy see https://github.com/prof-tejera/react-deployment-code
 
 ## Bonus Points
 
