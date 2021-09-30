@@ -31,6 +31,7 @@ For other ways to deploy see https://github.com/prof-tejera/react-deployment-cod
 
 1. Add support for decimal places.
 2. Add support for negative numbers.
+3. How are you handling the overflow of text? How might we handle situations in which we are dealing with really large numbers?
 
 ## How to run the project
 
