@@ -11,7 +11,7 @@ As you can tell the current layout needs a lot of styling work. Modify the layou
 ## Deliverable
 
 1. Style the calculator however you want. Feel free to use any colors, layout, and animations that you would like. Be as creative as you want.
-2. Can you find any edge cases with the calculator logic? Make a note about what you find.
+2. Define all PropTypes for all the components.
 3. Deploy your application using any method you want (repo is setup for Github actions). Add the url: URL_TO_PROJECT
 
 ### Deployment Instructions (Github actions)
