@@ -1,76 +1,107 @@
-import { Component } from "react";
+import React from "react";
+import { useState } from "react";
 
-import Number from "./Number";
-import Operator from "./Operator";
-import Screen from "./Screen";
+function Calculator() {
+  const [num1, setNum1] = useState("");
+  const [num2, setNum2] = useState("");
+  const [result, setResult] = useState("");
 
-class Calculator extends Component {
-  state = {
-    first: null,
-    operator: null,
-    second: null,
+  const addClick = (e) => {
+    setResult(parseInt(num1) + parseInt(num2));
   };
 
-  handleNumberClick = (number) => {
-    if (!this.state.operator) {
-      this.setState({ first: `${this.state.first || ""}${number}` });
-    } else {
-      this.setState({ second: `${this.state.second || ""}${number}` });
-    }
+  const MinusClick = (e) => {
+    setResult(parseInt(num1) - parseInt(num2));
   };
 
-  handleOperatorClick = (operator) => {
-    if (operator === "=") {
-      const first = parseInt(this.state.first);
-      const second = parseInt(this.state.second);
-
-      if (this.state.operator === "+") {
-        this.setState({ operator: null, first: first + second, second: null });
-      } else if (this.state.operator === "/") {
-        this.setState({ operator: null, first: first / second, second: null });
-      } else if (this.state.operator === "-") {
-        this.setState({ operator: null, first: first - second, second: null });
-      } else if (this.state.operator === "x") {
-        this.setState({ operator: null, first: first * second, second: null });
-      }
-    } else if (operator === "clear") {
-      this.setState({ first: null, second: null, operator: null });
-    } else {
-      this.setState({ operator });
-    }
+  const MultipliedClick = (e) => {
+    setResult(parseInt(num1) * parseInt(num2));
   };
 
-  getScreenValue = () => this.state.second || this.state.first;
+  const DividedClick = (e) => {
+    setResult(parseInt(num1) / parseInt(num2));
+  };
 
-  render() {
-    return (
-      <>
-        <Screen value={this.getScreenValue()} />
-        <div style={{ display: "flex" }}>
-          <div>
-            <Number value={0} onClick={this.handleNumberClick} />
-            <Number value={1} onClick={this.handleNumberClick} />
-            <Number value={2} onClick={this.handleNumberClick} />
-            <Number value={3} onClick={this.handleNumberClick} />
-            <Number value={4} onClick={this.handleNumberClick} />
-            <Number value={5} onClick={this.handleNumberClick} />
-            <Number value={6} onClick={this.handleNumberClick} />
-            <Number value={7} onClick={this.handleNumberClick} />
-            <Number value={8} onClick={this.handleNumberClick} />
-            <Number value={9} onClick={this.handleNumberClick} />
-          </div>
-          <div style={{ paddingLeft: 10 }}>
-            <Operator value="+" onClick={this.handleOperatorClick} />
-            <Operator value="/" onClick={this.handleOperatorClick} />
-            <Operator value="x" onClick={this.handleOperatorClick} />
-            <Operator value="-" onClick={this.handleOperatorClick} />
-            <Operator value="=" onClick={this.handleOperatorClick} />
-            <Operator value="clear" onClick={this.handleOperatorClick} />
-          </div>
-        </div>
-      </>
-    );
-  }
+  const ModulusClick = (e) => {
+    setResult(parseInt(num1) % parseInt(num2));
+  };
+
+  return (
+    <div className="continer">
+      <div className="box">
+        <input
+          onChange={(e) => setNum1(e.target.value)}
+          value={num1}
+          type="text"
+          className="form-control"
+          placeholder=""
+        />
+
+        <input
+          onChange={(e) => setNum2(e.target.value)}
+          value={num2}
+          type="text"
+          className="form-control"
+          placeholder=""
+        />
+      </div>
+      <div className="buttons">
+
+      <button
+          onClick={ModulusClick}
+          type="button"
+          className="b btn btn-outline-info"
+        >
+          {" "}
+          %{" "}
+        </button>
+        <button
+          onClick={DividedClick}
+          type="button"
+          className="b btn btn-outline-info"
+        >
+          {" "}
+          /{" "}
+        </button>
+        <button
+          onClick={MultipliedClick}
+          type="button"
+          className="b btn btn-outline-info"
+        >
+          {" "}
+          *{" "}
+        </button>
+        <button
+          onClick={addClick}
+          type="button"
+          className="b btn btn-outline-info"
+        >
+          {" "}
+          +{" "}
+        </button>
+        <button
+          onClick={MinusClick}
+          type="button"
+          className="b btn btn-outline-info"
+        >
+          {" "}
+          -{" "}
+        </button>
+      </div>
+
+      <div className="result">
+        <input
+          onChange={setResult}
+          value={result}
+          type="text"
+          className="form-control"
+          disabled
+          readOnly
+          {...result}
+        />
+      </div>
+    </div>
+  );
 }
 
 export default Calculator;
